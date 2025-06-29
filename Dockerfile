@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 FROM node:22-alpine AS frontend-build
-RUN npm install -g npm@latest && npm install -g yarn@1.22.22
+RUN npm install -g npm@latest
 WORKDIR /app/frontend
 COPY frontend/package.json ./
 # yarn.lock not copied since it does not exist
@@ -19,7 +19,7 @@ RUN python -m venv /app/backend/venv \
 COPY backend .
 
 FROM node:22-alpine AS runner
-RUN npm install -g npm@latest && npm install -g yarn@1.22.22
+RUN npm install -g npm@latest
 WORKDIR /app
 COPY --from=frontend-build /app/frontend/build ./frontend/build
 COPY --from=frontend-build /app/frontend/.env ./frontend/.env
