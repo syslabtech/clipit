@@ -218,7 +218,9 @@ const App = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="glass-input w-full p-3 rounded-lg"
                 placeholder="Enter a secure password"
-                onKeyPress={(e) => e.key === 'Enter' && createRoom()}
+                onKeyDown={(e) => { if (e.key === 'Enter') createRoom(); }}
+                autoComplete="off"
+                autoFocus
               />
             </div>
 
@@ -287,7 +289,9 @@ const App = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="glass-input w-full p-3 rounded-lg"
                 placeholder="Enter room password"
-                onKeyPress={(e) => e.key === 'Enter' && loginRoom()}
+                onKeyDown={(e) => { if (e.key === 'Enter') loginRoom(); }}
+                autoComplete="off"
+                autoFocus
               />
             </div>
 
