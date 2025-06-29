@@ -3,8 +3,7 @@ set -e
 
 # Start backend
 cd /app/backend
-. venv/bin/activate
-python server.py &
+/app/backend/venv/bin/python server.py &
 
 # Start frontend
 cd /app/frontend

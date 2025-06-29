@@ -1,32 +1,34 @@
 # syntax=docker/dockerfile:1
 
 FROM node:22-alpine AS frontend-build
+ENV NODE_ENV=production
 RUN npm install -g npm@latest
 WORKDIR /app/frontend
 COPY frontend/package.json ./
-# yarn.lock not copied since it does not exist
-RUN yarn install --non-interactive --no-progress || true
+RUN yarn install --non-interactive --no-progress --production || true
 COPY frontend .
-RUN yarn build
+RUN yarn build && yarn cache clean
 
 FROM python:3.11-alpine AS backend-build
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
 WORKDIR /app/backend
 COPY backend/requirements.txt ./
 RUN python -m venv /app/backend/venv \
     && . /app/backend/venv/bin/activate \
-    && pip install --no-cache-dir -r requirements.txt
+    && pip install --no-cache-dir -r requirements.txt \
+    && find /app/backend/venv -name '*.pyc' -delete
 COPY backend .
 
 FROM node:22-alpine AS runner
-RUN npm install -g npm@latest
+ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=frontend-build /app/frontend/build ./frontend/build
-COPY --from=frontend-build /app/frontend/.env ./frontend/.env
 COPY --from=backend-build /app/backend ./backend
-COPY --from=backend-build /app/backend/.env ./backend/.env
 COPY start.sh ./start.sh
 RUN addgroup -g 10001 appuser && adduser -D -u 10001 -G appuser appuser \
-    && chmod +x ./start.sh
+    && chmod +x ./start.sh \
+    && chown -R appuser:appuser /app
 USER 10001
 EXPOSE 3000
 CMD ["./start.sh"]
