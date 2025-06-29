@@ -38,8 +38,11 @@
 }
 
 .glass-input:focus {
-  /* Restore default focus outline for accessibility and usability */
-  /* Remove all overrides that break focus */
+  outline: 2px solid #a78bfa; /* Tailwind purple-400 for visible focus */
+  outline-offset: 2px;
+  border-color: rgba(167, 139, 250, 0.7); /* subtle border highlight */
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.12); /* slight highlight, optional */
 }
 
 .glass-button,
