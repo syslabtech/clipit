@@ -33,24 +33,7 @@
   }
 }
 
-/* Enhanced glass card animations */
-.glass-card {
-  animation: cardSlideIn 0.5s ease-out;
-  animation-delay: 0.1s;
-  animation-fill-mode: both;
-}
-
-@keyframes cardSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
+/* Remove all transitions and other animations except for view transitions */
 /* Glass morphism styles */
 .glass-card {
   background: rgba(255, 255, 255, 0.1);
@@ -66,7 +49,6 @@
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .glass-input::placeholder {
@@ -80,136 +62,32 @@
   background: rgba(255, 255, 255, 0.15);
 }
 
-.glass-button {
+.glass-button,
+.glass-button-secondary,
+.glass-button-danger {
   background: linear-gradient(135deg, rgba(147, 51, 234, 0.8), rgba(79, 70, 229, 0.8));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-.glass-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.glass-button:hover::before {
-  left: 100%;
-}
-
-.glass-button:hover {
-  background: linear-gradient(135deg, rgba(147, 51, 234, 1), rgba(79, 70, 229, 1));
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(147, 51, 234, 0.4);
-}
-
-.glass-button:active {
-  transform: translateY(0);
-}
-
-.glass-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.glass-button-secondary {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-button-secondary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.5s;
-}
-
-.glass-button-secondary:hover::before {
-  left: 100%;
-}
-
-.glass-button-secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-}
-
-.glass-button-danger {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.8), rgba(220, 38, 38, 0.8));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-}
-
+/* Remove all button hover/active/disabled animations */
+.glass-button:hover,
+.glass-button:active,
+.glass-button:disabled,
+.glass-button-secondary:hover,
 .glass-button-danger:hover {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 1), rgba(220, 38, 38, 1));
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
+  background: inherit;
+  transform: none;
+  box-shadow: none;
+  opacity: 1;
+  cursor: pointer;
 }
 
-/* Message styles */
-.message {
-  padding: 12px 16px;
-  border-radius: 8px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  font-weight: 500;
-  text-align: center;
-  animation: slideIn 0.3s ease-out;
-}
-
-.message-success {
-  background: rgba(34, 197, 94, 0.2);
-  color: #22c55e;
-  border-color: rgba(34, 197, 94, 0.4);
-}
-
-.message-error {
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-  border-color: rgba(239, 68, 68, 0.4);
-}
-
-.message-info {
-  background: rgba(59, 130, 246, 0.2);
-  color: #3b82f6;
-  border-color: rgba(59, 130, 246, 0.4);
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Remove all other keyframes and animations except for view transitions */
 
 /* Responsive design */
 @media (max-width: 768px) {
