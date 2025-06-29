@@ -8,21 +8,12 @@ const App = () => {
   const [clipboardText, setClipboardText] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const [isAnimating, setIsAnimating] = useState(false);
 
   const API_BASE = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
 
   const showMessage = (msg, type = 'info') => {
     setMessage(msg);
     setTimeout(() => setMessage(''), 3000);
-  };
-
-  const animateToView = (newView) => {
-    setIsAnimating(true);
-    setTimeout(() => {
-      setCurrentView(newView);
-      setIsAnimating(false);
-    }, 300);
   };
 
   const resetForm = () => {
@@ -50,7 +41,7 @@ const App = () => {
 
       if (response.ok) {
         setRoomId(data.room_id);
-        animateToView('clipboard');
+        setCurrentView('clipboard');
         showMessage('Room created successfully!', 'success');
       } else {
         showMessage(data.detail || 'Failed to create room', 'error');
@@ -82,7 +73,7 @@ const App = () => {
 
       if (response.ok) {
         setClipboardText(data.clipboard_text || '');
-        animateToView('clipboard');
+        setCurrentView('clipboard');
         showMessage('Login successful!', 'success');
       } else {
         showMessage(data.detail || 'Login failed', 'error');
@@ -141,19 +132,15 @@ const App = () => {
   };
 
   const exitRoom = () => {
-    setIsAnimating(true);
-    setTimeout(() => {
-      setCurrentView('welcome');
-      setRoomId('');
-      setPassword('');
-      setClipboardText('');
-      setIsAnimating(false);
-      showMessage('Exited room', 'info');
-    }, 300);
+    setCurrentView('welcome');
+    setRoomId('');
+    setPassword('');
+    setClipboardText('');
+    showMessage('Exited room', 'info');
   };
 
   const WelcomeView = () => (
-    <div className={`view-container ${isAnimating ? 'view-animating' : ''}`}>
+    <div className="view-container">
       <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
         <div className="glass-card w-full max-w-md p-8 space-y-6">
           <div className="text-center">
@@ -171,7 +158,7 @@ const App = () => {
             <button
               onClick={() => {
                 resetForm();
-                animateToView('create');
+                setCurrentView('create');
               }}
               className="glass-button w-full p-4 rounded-lg font-semibold flex items-center justify-center space-x-3"
             >
@@ -184,7 +171,7 @@ const App = () => {
             <button
               onClick={() => {
                 resetForm();
-                animateToView('join');
+                setCurrentView('join');
               }}
               className="glass-button-secondary w-full p-4 rounded-lg font-semibold flex items-center justify-center space-x-3"
             >
@@ -206,7 +193,7 @@ const App = () => {
   );
 
   const CreateRoomView = () => (
-    <div className={`view-container ${isAnimating ? 'view-animating' : ''}`}>
+    <div className="view-container">
       <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
         <div className="glass-card w-full max-w-md p-8 space-y-6">
           <div className="text-center">
@@ -246,7 +233,7 @@ const App = () => {
             <button
               onClick={() => {
                 resetForm();
-                animateToView('join');
+                setCurrentView('join');
               }}
               className="glass-button-secondary w-full p-3 rounded-lg font-semibold flex items-center justify-center space-x-2"
             >
@@ -262,7 +249,7 @@ const App = () => {
   );
 
   const JoinRoomView = () => (
-    <div className={`view-container ${isAnimating ? 'view-animating' : ''}`}>
+    <div className="view-container">
       <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
         <div className="glass-card w-full max-w-md p-8 space-y-6">
           <div className="text-center">
@@ -315,7 +302,7 @@ const App = () => {
             <button
               onClick={() => {
                 resetForm();
-                animateToView('create');
+                setCurrentView('create');
               }}
               className="glass-button-secondary w-full p-3 rounded-lg font-semibold flex items-center justify-center space-x-2"
             >
@@ -331,7 +318,7 @@ const App = () => {
   );
 
   const ClipboardView = () => (
-    <div className={`view-container ${isAnimating ? 'view-animating' : ''}`}>
+    <div className="view-container">
       <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
         <div className="glass-card w-full max-w-md p-8 space-y-6">
           <div className="text-center">
