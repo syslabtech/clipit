@@ -276,6 +276,7 @@ const App = () => {
                 onChange={(e) => setRoomId(e.target.value)}
                 className="glass-input w-full p-3 rounded-lg"
                 placeholder="Enter room ID"
+                autoComplete="off"
               />
             </div>
 
@@ -291,7 +292,6 @@ const App = () => {
                 placeholder="Enter room password"
                 onKeyDown={(e) => { if (e.key === 'Enter') loginRoom(); }}
                 autoComplete="off"
-                autoFocus
               />
             </div>
 
