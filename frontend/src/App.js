@@ -220,7 +220,6 @@ const App = () => {
                 placeholder="Enter a secure password"
                 onKeyDown={(e) => { if (e.key === 'Enter') createRoom(); }}
                 autoComplete="off"
-                autoFocus
               />
             </div>
 
@@ -357,6 +356,8 @@ const App = () => {
                 onChange={(e) => setClipboardText(e.target.value)}
                 className="glass-input w-full p-3 rounded-lg h-48"
                 placeholder="Enter text to share..."
+                autoComplete="off"
+                spellCheck={false}
               />
             </div>
 
