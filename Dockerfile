@@ -23,6 +23,7 @@ COPY backend .
 
 FROM node:22-alpine AS runner
 ENV NODE_ENV=production
+RUN npm install -g serve
 WORKDIR /app
 COPY --from=frontend-build /app/frontend/build ./frontend/build
 COPY --from=backend-build /app/backend ./backend
