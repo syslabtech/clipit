@@ -17,7 +17,7 @@ COPY backend/requirements.txt ./
 RUN python -m venv /app/backend/venv \
     && . /app/backend/venv/bin/activate \
     && pip install --no-cache-dir -r requirements.txt \
-    && pip install gunicorn \
+    && pip install gunicorn uvicorn \
     && find /app/backend/venv -name '*.pyc' -delete
 COPY backend .
 

@@ -3,12 +3,13 @@
   /* Remove all animation for page transitions */
   opacity: 1;
   transform: none;
+  transition: opacity 0.3s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1);
 }
 
 .view-animating {
   /* Remove all animation for page transitions */
-  opacity: 1;
-  transform: none;
+  opacity: 0;
+  transform: translateX(40px);
 }
 
 /* Remove all keyframes for slideIn and slideOut */
@@ -37,10 +38,8 @@
 }
 
 .glass-input:focus {
-  outline: none;
-  border-color: inherit;
-  box-shadow: none;
-  background: inherit;
+  /* Restore default focus outline for accessibility and usability */
+  /* Remove all overrides that break focus */
 }
 
 .glass-button,
