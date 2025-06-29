@@ -173,7 +173,7 @@ const App = () => {
                 resetForm();
                 animateToView('create');
               }}
-              className="glass-button w-full p-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-3"
+              className="glass-button w-full p-4 rounded-lg font-semibold flex items-center justify-center space-x-3"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -186,7 +186,7 @@ const App = () => {
                 resetForm();
                 animateToView('join');
               }}
-              className="glass-button-secondary w-full p-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-3"
+              className="glass-button-secondary w-full p-4 rounded-lg font-semibold flex items-center justify-center space-x-3"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
@@ -238,7 +238,7 @@ const App = () => {
             <button
               onClick={createRoom}
               disabled={loading}
-              className="glass-button w-full p-3 rounded-lg font-semibold transition-all duration-300"
+              className="glass-button w-full p-3 rounded-lg font-semibold"
             >
               {loading ? 'Creating...' : 'Create Room'}
             </button>
@@ -248,7 +248,7 @@ const App = () => {
                 resetForm();
                 animateToView('join');
               }}
-              className="glass-button-secondary w-full p-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+              className="glass-button-secondary w-full p-3 rounded-lg font-semibold flex items-center justify-center space-x-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
@@ -307,7 +307,7 @@ const App = () => {
             <button
               onClick={loginRoom}
               disabled={loading}
-              className="glass-button w-full p-3 rounded-lg font-semibold transition-all duration-300"
+              className="glass-button w-full p-3 rounded-lg font-semibold"
             >
               {loading ? 'Joining...' : 'Join Room'}
             </button>
@@ -317,7 +317,7 @@ const App = () => {
                 resetForm();
                 animateToView('create');
               }}
-              className="glass-button-secondary w-full p-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+              className="glass-button-secondary w-full p-3 rounded-lg font-semibold flex items-center justify-center space-x-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -340,7 +340,7 @@ const App = () => {
               <p className="text-gray-300">Room ID: {roomId.substring(0, 8)}...</p>
               <button
                 onClick={copyRoomId}
-                className="glass-button-secondary p-2 rounded-lg transition-all duration-300 hover:scale-105"
+                className="glass-button-secondary p-2 rounded-lg"
                 title="Copy Room ID"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -373,7 +373,7 @@ const App = () => {
               <button
                 onClick={saveClipboard}
                 disabled={loading}
-                className="glass-button flex-1 p-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+                className="glass-button flex-1 p-3 rounded-lg font-semibold flex items-center justify-center space-x-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
@@ -383,7 +383,7 @@ const App = () => {
 
               <button
                 onClick={clearClipboard}
-                className="glass-button-secondary flex-1 p-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+                className="glass-button-secondary flex-1 p-3 rounded-lg font-semibold flex items-center justify-center space-x-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -394,7 +394,7 @@ const App = () => {
 
             <button
               onClick={exitRoom}
-              className="glass-button-danger w-full p-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+              className="glass-button-danger w-full p-3 rounded-lg font-semibold flex items-center justify-center space-x-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
