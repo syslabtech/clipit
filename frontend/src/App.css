@@ -1,37 +1,17 @@
 /* View transition animations */
 .view-container {
-  animation: slideIn 0.4s ease-out;
+  /* Remove all animation for page transitions */
   opacity: 1;
-  transform: translateX(0);
+  transform: none;
 }
 
 .view-animating {
-  animation: slideOut 0.3s ease-in;
-  opacity: 0;
-  transform: translateX(-20px);
+  /* Remove all animation for page transitions */
+  opacity: 1;
+  transform: none;
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideOut {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-}
+/* Remove all keyframes for slideIn and slideOut */
 
 /* Remove all transitions and other animations except for view transitions */
 /* Glass morphism styles */
@@ -177,4 +157,8 @@
   50% {
     opacity: 0.5;
   }
+}
+
+.message-error {
+  color: #ef4444 !important; /* Tailwind red-500 */
 }
