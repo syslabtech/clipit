@@ -2,7 +2,10 @@
 set -e
 
 # Start backend
-cd /app/backend && venv/bin/python server.py &
+cd /app/backend
+. venv/bin/activate
+python server.py &
 
 # Start frontend
-cd /app/frontend && npm run start
+cd /app/frontend
+npx serve -s build
