@@ -21,10 +21,10 @@ RUN python -m venv /app/backend/venv \
     && find /app/backend/venv -name '*.pyc' -delete
 COPY backend .
 
-FROM node:22-alpine AS runner
+FROM python:3.11-alpine AS runner
 ENV NODE_ENV=production
-RUN npm install -g serve
 WORKDIR /app
+RUN apk add --no-cache nodejs npm && npm install -g serve
 COPY --from=frontend-build /app/frontend/build ./frontend/build
 COPY --from=backend-build /app/backend ./backend
 COPY start.sh ./start.sh
