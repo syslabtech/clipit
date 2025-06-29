@@ -12,7 +12,6 @@ RUN yarn build
 FROM python:3.11-alpine AS backend-build
 WORKDIR /app/backend
 COPY backend/requirements.txt ./
-COPY backend/.env ./  # Copy backend env file if exists
 RUN python -m venv /app/backend/venv \
     && . /app/backend/venv/bin/activate \
     && pip install --no-cache-dir -r requirements.txt
