@@ -2,7 +2,7 @@
 
 FROM node:22-alpine AS frontend-build
 ENV NODE_ENV=production
-RUN npm install -g npm@latest
+RUN npm install -g npm@latest serve
 WORKDIR /app/frontend
 COPY frontend/package.json ./
 RUN yarn install --non-interactive --no-progress --production || true
@@ -17,6 +17,7 @@ COPY backend/requirements.txt ./
 RUN python -m venv /app/backend/venv \
     && . /app/backend/venv/bin/activate \
     && pip install --no-cache-dir -r requirements.txt \
+    && pip install gunicorn \
     && find /app/backend/venv -name '*.pyc' -delete
 COPY backend .
 
