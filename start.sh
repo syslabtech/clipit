@@ -3,7 +3,7 @@ set -e
 
 # Start backend with Gunicorn (update 'server:app' if needed)
 cd /app/backend
-python3 -m gunicorn --bind 0.0.0.0:8000 server:app &
+/app/backend/venv/bin/python -m gunicorn --bind 0.0.0.0:8000 server:app &
 
 # Start frontend (serve is already installed globally)
 cd /app/frontend
