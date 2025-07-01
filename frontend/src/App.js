@@ -276,6 +276,7 @@ const App = () => {
                 className="glass-input w-full p-3 rounded-lg"
                 placeholder="Enter room ID"
                 autoComplete="off"
+                autoFocus={false}
               />
             </div>
 
