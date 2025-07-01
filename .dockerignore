@@ -31,7 +31,3 @@ yarn-error.log*
 package-lock.json
 yarn.lock
 
-# Ignore environment files (optional, if not needed in image)
-.env
-frontend/.env
-backend/.env
