@@ -7,6 +7,7 @@ if [ -f /app/backend/.env ]; then
 fi
 
 # Run the script to generate the frontend env config
+touch /app/frontend/build/env.js
 sh ./frontend/env.sh
 
 # Start backend with Gunicorn + UvicornWorker (for FastAPI/ASGI)

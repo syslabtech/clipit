@@ -32,6 +32,7 @@ COPY frontend/env.sh ./frontend/env.sh
 RUN addgroup -g 10001 appuser && adduser -D -u 10001 -G appuser appuser \
     && chmod +x ./start.sh \
     && chown -R appuser:appuser /app
+
 USER 10001
 EXPOSE 3000
 CMD ["./start.sh"]
