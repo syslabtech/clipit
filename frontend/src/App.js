@@ -48,8 +48,8 @@ const CreateRoomView = ({ password, setPassword, onCreateRoom, onNavigate, loadi
           <button onClick={onCreateRoom} disabled={loading} className="glass-button w-full p-3 rounded-lg font-semibold">
             {loading ? 'Creating...' : 'Create Room'}
           </button>
-          <button onClick={() => onNavigate('join')} className=\"glass-button-secondary w-full p-3 rounded-lg font-semibold\">\n            Join Existing Room Instead\n          </button>
-            Back to Welcome
+          <button onClick={() => onNavigate('join')} className="glass-button-secondary w-full p-3 rounded-lg font-semibold">
+            Join Existing Room Instead
           </button>
         </div>
       </div>
@@ -87,8 +87,8 @@ const JoinRoomView = ({ roomId, setRoomId, password, setPassword, onLogin, onNav
           <button onClick={onLogin} disabled={loading} className="glass-button w-full p-3 rounded-lg font-semibold">
             {loading ? 'Joining...' : 'Join Room'}
           </button>
-          <button onClick={() => onNavigate('create')} className=\"glass-button-secondary w-full p-3 rounded-lg font-semibold\">\n            Create New Room Instead\n          </button>
-            Back to Welcome
+          <button onClick={() => onNavigate('create')} className="glass-button-secondary w-full p-3 rounded-lg font-semibold">
+            Create New Room Instead
           </button>
         </div>
       </div>
