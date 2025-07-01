@@ -50,6 +50,7 @@ const CreateRoomView = ({ showMessage }) => {
                 showMessage(data.detail || 'Failed to create room');
             }
         } catch (error) {
+            console.error("Create room failed:", error);
             showMessage('Network error. Please try again.');
         } finally {
             setLoading(false);
@@ -113,6 +114,7 @@ const JoinRoomView = ({ showMessage }) => {
                 showMessage(data.detail || 'Login failed');
             }
         } catch (error) {
+            console.error("Login failed:", error);
             showMessage('Network error. Please try again.');
         } finally {
             setLoading(false);
@@ -176,6 +178,7 @@ const ClipboardView = ({ showMessage }) => {
                     navigate('/join');
                 }
             } catch (error) {
+                console.error("Fetch clipboard failed:", error);
                 showMessage('Network error. Cannot fetch clipboard.');
                 navigate('/join');
             }
@@ -198,6 +201,7 @@ const ClipboardView = ({ showMessage }) => {
                 showMessage(data.detail || 'Failed to save clipboard');
             }
         } catch (error) {
+            console.error("Save clipboard failed:", error);
             showMessage('Network error. Please try again.');
         } finally {
             setLoading(false);

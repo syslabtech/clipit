@@ -8,15 +8,41 @@ import uuid
 from datetime import datetime
 from typing import Optional
 
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 app = FastAPI()
+
+@app.on_event("startup")
+async def startup_db_client():
+    logger.info("Starting up and connecting to MongoDB.")
+    try:
+        app.mongodb_client = AsyncIOMotorClient(MONGO_URL)
+        app.db = app.mongodb_client.clipboard_app # Use the specific database name
+        # The following command will fail if the connection is not established.
+        await app.db.command('ping')
+        logger.info("Successfully connected to MongoDB.")
+    except Exception as e:
+        logger.error(f"Failed to connect to MongoDB: {e}")
+        # Depending on the use case, you might want to exit the application
+        # For now, we'll just log the error.
+
+@app.on_event("shutdown")
+async def shutdown_db_client():
+    logger.info("Shutting down MongoDB connection.")
+    app.mongodb_client.close()
+
 
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000"],  # Be more specific for security
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"]
+    allow_headers=["*"]
 )
 
 # MongoDB connection
@@ -56,6 +82,7 @@ async def health_check():
 
 @app.post("/api/rooms/create")
 async def create_room(room_data: RoomCreate):
+    logger.info(f"Attempting to create room.")
     """Create a new room with encrypted password"""
     try:
         room_id = str(uuid.uuid4())
@@ -81,6 +108,7 @@ async def create_room(room_data: RoomCreate):
 
 @app.post("/api/rooms/login")
 async def login_room(login_data: RoomLogin):
+    logger.info(f"Attempting to login to room: {login_data.room_id}")
     """Login to existing room"""
     try:
         room = await rooms_collection.find_one({"room_id": login_data.room_id})
@@ -103,6 +131,7 @@ async def login_room(login_data: RoomLogin):
 
 @app.get("/api/rooms/{room_id}/clipboard")
 async def get_clipboard(room_id: str):
+    logger.info(f"Attempting to get clipboard for room: {room_id}")
     """Get clipboard text for a room"""
     try:
         room = await rooms_collection.find_one({"room_id": room_id})
@@ -121,6 +150,7 @@ async def get_clipboard(room_id: str):
 
 @app.post("/api/rooms/clipboard/save")
 async def save_clipboard(clipboard_data: ClipboardUpdate):
+    logger.info(f"Attempting to save clipboard for room: {clipboard_data.room_id}")
     """Save clipboard text to room"""
     try:
         result = await rooms_collection.update_one(
@@ -147,6 +177,7 @@ async def save_clipboard(clipboard_data: ClipboardUpdate):
 
 @app.post("/api/rooms/clipboard/clear")
 async def clear_clipboard(clear_data: ClipboardClear):
+    logger.info(f"Attempting to clear clipboard for room: {clear_data.room_id}")
     """Clear clipboard text in room"""
     try:
         result = await rooms_collection.update_one(
