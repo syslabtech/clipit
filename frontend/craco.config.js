@@ -1,3 +1,5 @@
+  devServer: {\n    proxy: {\n      \'/api\': {\n        target: process.env.REACT_APP_BACKEND_URL || \'http://localhost:8001\',\n        changeOrigin: true,\n        pathRewrite: { \'^\/api\': \'\' },\n      },\n    },\n    port: 3000,\n  },
+
 // Load configuration from environment or config file
 const path = require('path');
 
@@ -12,20 +14,6 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
     },
     configure: (webpackConfig) => {
-      
-      // Disable hot reload completely if environment variable is set
-      if (config.disableHotReload) {
-        // Remove hot reload related plugins
-        webpackConfig.plugins = webpackConfig.plugins.filter(plugin => {
-          return !(plugin.constructor.name === 'HotModuleReplacementPlugin');
-        });
-        
-        // Disable watch mode
-        webpackConfig.watch = false;
-        webpackConfig.watchOptions = {
-          ignored: /.*/, // Ignore all files
-        };
-      }
       
       return webpackConfig;
     },
