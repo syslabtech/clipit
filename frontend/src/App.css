@@ -24,24 +24,47 @@
 }
 
 .glass-input {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  /* Remove all box-shadow, background, or border-color changes on focus */
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  transition: none !important;
+  transform: none !important;
+  animation: none !important;
+  will-change: auto !important;
 }
 
 .glass-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6) !important;
 }
 
 .glass-input:focus {
-  outline: 2px solid #a78bfa; /* Tailwind purple-400 for visible focus */
-  outline-offset: 2px;
-  border-color: rgba(167, 139, 250, 0.7); /* subtle border highlight */
-  box-shadow: none;
-  background: rgba(255, 255, 255, 0.12); /* slight highlight, optional */
+  outline: 2px solid #a78bfa !important;
+  outline-offset: 2px !important;
+  border-color: rgba(167, 139, 250, 0.7) !important;
+  box-shadow: none !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  transition: none !important;
+  transform: none !important;
+  animation: none !important;
+  will-change: auto !important;
+}
+
+.glass-input:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+.glass-input:active {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  transition: none !important;
+  transform: none !important;
 }
 
 .glass-button,
