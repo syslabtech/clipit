@@ -28,6 +28,7 @@ RUN apk add --no-cache nodejs npm && npm install -g serve
 COPY --from=frontend-build /app/frontend/build ./frontend/build
 COPY --from=backend-build /app/backend ./backend
 COPY start.sh ./start.sh
+COPY frontend/env.sh ./frontend/env.sh
 RUN addgroup -g 10001 appuser && adduser -D -u 10001 -G appuser appuser \
     && chmod +x ./start.sh \
     && chown -R appuser:appuser /app

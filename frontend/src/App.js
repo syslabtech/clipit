@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, useParams, Link } from 'react-router-dom';
 import './App.css';
 
-const API_BASE = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+const API_BASE = `http://${process.env.REACT_APP_BACKEND_URL || 'localhost:8001'}`;
 
 const WelcomeView = () => (
     <div className="view-container">
